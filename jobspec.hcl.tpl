@@ -37,6 +37,7 @@ job "elasticsearch-exporter" {
 
       config {
         image = "ghcr.io/schuettflix/infra/elasticsearch-exporter:latest"
+        args = ["--es.uri", "https://${es_uri}:443"]
         ports = ["http"]
       }
 
@@ -52,14 +53,6 @@ job "elasticsearch-exporter" {
           interval = "5s"
           timeout  = "2s"
         }
-      }
-
-      template {
-        data = <<-EOH
-          ES_URI="https://${es_uri}:443"
-        EOH
-        destination = "local/env"
-        env         = true
       }
 
       resources {
