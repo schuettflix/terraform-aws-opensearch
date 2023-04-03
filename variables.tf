@@ -358,3 +358,11 @@ variable "custom_endpoint_certificate_arn" {
   description = "ACM certificate ARN for custom endpoint."
   default     = ""
 }
+
+variable "env" {
+  type = string
+}
+
+variable "datacenters" {
+  type = string
+}
