@@ -37,7 +37,7 @@ job "elasticsearch-exporter" {
 
       config {
         image = "ghcr.io/schuettflix/infra/elasticsearch-exporter:latest"
-        args = ["--es.uri", "https://${es_uri}:443"]
+        args = ["--es.indices", "--es.all", "--es.uri", "https://${es_uri}:443"]
         ports = ["http"]
       }
 
