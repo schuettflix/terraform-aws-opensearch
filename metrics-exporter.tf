@@ -17,7 +17,6 @@ resource "nomad_job" "elasticsearch-exporter" {
     es_uri = join("", aws_opensearch_domain.default.*.endpoint)
   })
   hcl2 {
-    enabled = true
     vars = {
       "job_name"    = join("-", ["elasticsearch-exporter", var.env])
       "datacenters" = var.datacenters
