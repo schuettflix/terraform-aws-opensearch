@@ -3,15 +3,15 @@ job "elasticsearch-exporter" {
   name        = var.job_name
   region      = "eu-central-1"
   datacenters = var.datacenters
-  namespace   = var.env
-  type = "service"
+  namespace   = "default" 
+  type        = "service"
 
   update {
     stagger      = "10s"
     max_parallel = 1
-    canary = 1
+    canary       = 1
     auto_promote = true
-    auto_revert = true
+    auto_revert  = true
   }
 
   vault {
@@ -42,11 +42,10 @@ job "elasticsearch-exporter" {
       }
 
       service {
-        name = var.job_name
-        port = "http"
-        tags = [
-          "metrics",
-        ]
+        name     = var.job_name
+        port     = "http"
+        tags     = ["metrics"]
+        provider = "nomad"
 
         check {
           type     = "tcp"
